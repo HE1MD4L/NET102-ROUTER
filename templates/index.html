@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOC | Router Automation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Top Navigation Bar -->
+    <header class="navbar">
+        <div class="logo">
+            <span class="status-dot"></span> NOC Dashboard
+        </div>
+        <div class="device-info">
+            <span>Target: <strong>R1 (Cisco 3725)</strong></span>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Action Panel -->
+        <section class="controls-panel">
+            <h2>Command Center</h2>
+            <div class="button-grid">
+                <button class="cmd-btn" onclick="runCommand('show version')">
+                    <span class="btn-icon">ℹ️</span> Show Version
+                </button>
+                <button class="cmd-btn" onclick="runCommand('show ip interface brief')">
+                    <span class="btn-icon">🔌</span> IP Interfaces
+                </button>
+                <button class="cmd-btn" onclick="runCommand('show running-config')">
+                    <span class="btn-icon">⚙️</span> Running Config
+                </button>
+                <button class="cmd-btn" onclick="runCommand('show ip route')">
+                    <span class="btn-icon">🗺️</span> IP Routes
+                </button>
+                <button class="cmd-btn primary-btn" onclick="runAllCommands()">
+                    <span class="btn-icon">🚀</span> Run All Commands
+                </button>
+            </div>
+        </section>
+
+        <!-- Output Terminal -->
+        <section class="terminal-panel">
+            <div class="terminal-header">
+                <div class="mac-buttons">
+                    <span class="mac red"></span>
+                    <span class="mac yellow"></span>
+                    <span class="mac green"></span>
+                </div>
+                <div class="terminal-title">router@output:~</div>
+            </div>
+            
+            <div id="output-container" class="terminal-body">
+                <div class="placeholder">
+                    <p>Awaiting command execution...</p>
+                    <span class="blinking-cursor">_</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
